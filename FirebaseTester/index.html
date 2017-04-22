@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="firebase">
+    <head>
+        <!-- AngularJS -->
+        <script src="https://code.angularjs.org/1.6.4/angular.js"></script>
+        
+        <!-- Firebase -->
+        
+        <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
+        
+        <!-- AngularFire -->
+        <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.js"></script>
+        
+        <script>
+          // Initialize Firebase
+          /* global firebase */
+          var config = {
+            apiKey: "AIzaSyBnlIp29mnyOQ5wH1N7I_P7afJ5QiLNl9k",
+            authDomain: "tester-28b42.firebaseapp.com",
+            databaseURL: "https://tester-28b42.firebaseio.com",
+            projectId: "tester-28b42",
+            storageBucket: "tester-28b42.appspot.com",
+            messagingSenderId: "526152544867"
+          };
+          firebase.initializeApp(config);
+        </script>
+        
+        <script src="app.js"></script>
+        <title>Firebase Test</title>
+    </head>
+    <body>
+        <div ng-controller="testappController as tac">
+            Temperature at {{tac.selected_city.id}} is {{tac.selected_city.temperature}}
+        </div>
+    </body>
+</html>
