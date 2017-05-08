@@ -1,5 +1,5 @@
 /* global angular firebase */
-angular.module('firebase', ['firebase'])
+angular.module('daniel', ['firebase'])
     .controller("testappController", ['$scope', '$firebaseObject', 'DSWeatherService',
         function ($scope, $firebaseObject, DSWeatherService){
             
@@ -11,19 +11,26 @@ angular.module('firebase', ['firebase'])
                 id: "KAMA",
                 lat: 35.2193611,
                 lon: -101.7059167,
-                temperature: 0
+                weather: {
+                    temperature: 0,
+                    pressure: 0
+                }
             };
             
+            //enable our ability to contact the database at a certain point
             var ref = firebase.database().ref();
+            //obtain the firebase object so that we can sync changes
             tac.db = $firebaseObject(ref);
             
             tac.getWeather = function (){
                 DSWeatherService.getCurrentConditions(tac.selected_city)
                     .then(function(res){
                         console.log(res.data);
-                        tac.selected_city.temperature = res.data.currently.temperature;
+                        tac.selected_city.weather.temperature = res.data.currently.temperature;
+                        tac.selected_city.weather.pressure = res.data.currently.pressure;
                         
                         tac.db.latest_temperature = res.data.currently.temperature;
+                        tac.db.latest_pressure = res.data.currently.pressure;
                         tac.db.last_accessed = new Date().getTime();
                         
                         
@@ -37,7 +44,8 @@ angular.module('firebase', ['firebase'])
                         console.log(err);
                     });
             };
-                
+            
+            //and call the method above
             tac.getWeather();
             
             }])

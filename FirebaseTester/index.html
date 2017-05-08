@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="firebase">
+<html ng-app="daniel">
     <head>
         <!-- AngularJS -->
         <script src="https://code.angularjs.org/1.6.4/angular.js"></script>
@@ -30,7 +30,9 @@
     </head>
     <body>
         <div ng-controller="testappController as tac">
-            Temperature at {{tac.selected_city.id}} is {{tac.selected_city.temperature}}
+            Temperature at {{tac.selected_city.id}} is {{tac.selected_city.weather.temperature}}
+            <br>
+            Pressure: {{tac.selected_city.weather.pressure}}
         </div>
     </body>
 </html>
